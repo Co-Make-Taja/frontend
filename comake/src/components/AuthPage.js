@@ -12,7 +12,7 @@ export default function AuthPage() {
         <div>
             <Router>
                 {/* <Link to="login">Login</Link> */}
-                {page==='SignUp' ? <Link id="login" to={'/login'} onClick={()=>changePage('login')}> Have an account? Login!</Link> : <Link id="signup" to={'/signup'} onClick={()=> changePage('Login')}>Sign up</Link>}
+                {page==='SignUp' ? <Link id="login" to={'/login'} onClick={()=>changePage('login')}> Have an account? Login!</Link> : <Link id="signup" onClick={()=> changePage('Login')}></Link>}
 
                 <Switch>
                     <Route path="/login">
