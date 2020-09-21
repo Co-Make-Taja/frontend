@@ -9,7 +9,12 @@ export const fetchIssues = () => {
         dispatch({
             type: FETCH_ISSUES
         })
-        //axios here
+        axios
+            .get("https://bw-comakeapp-java.herokuapp.com/comments")
+            .then((response) => {
+                console.log("Get Response", response)
+                dispatch({type: FETCH_ISSUES, payload: response.data})
+            })
         
     }
 }
