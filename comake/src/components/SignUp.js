@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
+// import Form from './Form'
 import Input from './Input'
 // import UseIsMount, { useIsMount } from './UseIsMount'
 
@@ -12,6 +13,39 @@ export default function SignUp() {
         password: '',
         confirmPassword: ''
     }
+
+    const nameLabels = [{
+
+        name: 'username',
+        label: 'Username',
+        type:'text'
+    },
+
+    {
+        name: 'email',
+        label: 'Email',
+        type:'text'
+    },
+
+    {
+        name: 'phone',
+        label: 'Phone',
+        type:'text'
+    },
+
+    {
+        name: 'password',
+        label: 'Password',
+        type:'password'
+    },
+
+    {
+        name: 'confirmPassword',
+        label: 'Confirm Password',
+        type:'password'
+    },
+
+    ]
 
     const [errors, setErrors] = useState({ ...data })
     const [fieldData, changeData] = useState({ ...data })
@@ -55,7 +89,7 @@ export default function SignUp() {
             .then((valid) => {
                 setDisabled(!valid)
             })
-            .catch((error)=>{})
+            .catch((error) => { })
     }, [fieldData])
     // useEffect(() => {
 
@@ -74,8 +108,6 @@ export default function SignUp() {
         })
         // fieldData[event.target.name] = event.target.value
     }
-
-
 
     function checkValid(value, name) {
 
@@ -105,54 +137,36 @@ export default function SignUp() {
     }
 
     return (
+
         <div>
             <h2>Sign up</h2>
 
-            <form>
-                {/* <label>
-                    Username
-                    <input name="username" onChange={inputChange}></input>
-                </label>
-                <br />
-                <span>{errors.username ? errors.username : null}</span> */}
+            {/* <Form data={data} schema = {schema} inputChange={inputChange} nameLabels={nameLabels}></Form> */}
+
+            {
+                <form>
+                    {nameLabels.map((item) => {
+                        return (<Input name={item.name} type={item.type} label={item.label} inputChange={inputChange} errors={errors}></Input>)
+                    })}
+                    <button disabled={disabled}>Submit</button>
+                </form>
+            }
+
+            
+            {/* <form>
                 <Input name="username" type="text" label="Username" inputChange={inputChange} errors={errors}></Input>
 
                 <Input name="email" type="text" label="Email" inputChange={inputChange} errors={errors}></Input>
-                {/* <label>
-                    Email
-                    <input name="email" onChange={inputChange}></input>
-                </label>
-                <span>{errors.email ? errors.username : null}</span>
-                <br /> */}
-                <Input name="phone" type="text" label="Phone" inputChange={inputChange} errors={errors}></Input>
-                {/* <label>
-                    Phone
-                    <input name="phone" onChange={inputChange}></input>
-                </label>
-                <span>{errors.phone ? errors.phone : null}</span>
-                <br /> */}
 
-                {/* <label>
-                    Password
-                    <input type="password" name="password" onChange={inputChange}></input>
-                </label>
-                <span>{errors.password ? errors.password : null}</span>
-                <br /> */}
+                <Input name="phone" type="text" label="Phone" inputChange={inputChange} errors={errors}></Input>
 
                 <Input name="password" type="password" label="Password" inputChange={inputChange} errors={errors}></Input>
-
-                {/* <label>
-                    Confirm Password
-                    <input type="password" name="confirmPassword" onChange={inputChange}></input>
-                </label>
-                <span>{errors.confirmPassword ? errors.confirmPassword : null}</span>
-                <br /> */}
 
                 <Input name="confirmPassword" type="password" label="Confirm Password" inputChange={inputChange} errors={errors}></Input>
 
                 <button disabled={disabled}>Submit</button>
 
-            </form>
+            </form> */}
         </div>
     )
 }
