@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export const axiosWithAuth = () => {
+export const axiosPostWithAuth = () => {
     
     const token = localStorage.getItem("token")
     
     axios
-        .get(
-            "https://bw-comakeapp-java.herokuapp.com/issues",
+        .post(
+            "https://bw-comakeapp-java.herokuapp.com/login",
             `grant_type=password&username=${credentials.username}&password=${credentials.password}`,
             {
                 headers: {

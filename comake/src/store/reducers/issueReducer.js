@@ -1,3 +1,4 @@
+import {FETCH_ISSUES} from '../actions/issueActions'
 
 const initialIssues = {
     issues: []
@@ -8,6 +9,9 @@ export const issueReducer = (state = initialIssues, action) => {
         case FETCH_ISSUES:
             return{
                 ...state,
+                issues: action.payload
             }
+        default:
+            return state;
     }
 }
