@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
+import LandingPage from './components/landingpage'
+
 import './App.css';
 import AuthPage from './components/AuthPage'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
@@ -7,8 +8,13 @@ import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams 
 
 function App() {
   return (
+ //nelson-singleton
+    <div className="App">
+      <LandingPage />
+
     <div>
       <AuthPage></AuthPage>
+ //master
     </div>
     // <div className="App">
     //   <header className="App-header">
