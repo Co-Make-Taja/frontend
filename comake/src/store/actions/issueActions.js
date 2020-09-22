@@ -2,6 +2,7 @@
 import axios from 'axios'
 
 export const FETCH_ISSUES = "FETCH_ISSUES"
+export const FETCH_ISSUES_SUCCESS = "FETCH_ISSUES_SUCCESS"
 
 //action creators
 export const fetchIssues = () => {
@@ -10,10 +11,10 @@ export const fetchIssues = () => {
             type: FETCH_ISSUES
         })
         axios
-            .get("https://bw-comakeapp-java.herokuapp.com/comments")
+            .get("https://bw-comakeapp-java.herokuapp.com/issues/issues")
             .then((response) => {
                 console.log("Get Response", response)
-                dispatch({type: FETCH_ISSUES, payload: response.data})
+                dispatch({type: FETCH_ISSUES_SUCCESS, payload: response.data})
             })
         
     }

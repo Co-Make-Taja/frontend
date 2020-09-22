@@ -15,7 +15,8 @@ function App() {
       
 
       <AuthPage></AuthPage>
-      <PrivateRoute path = '/landing' component = {LandingPage}/>
+      {/* <PrivateRoute path = '/dashboard' component = {LandingPage}/> */}
+      <Route path = '/dashboard' component = {LandingPage}/>
       
 
     </div>
