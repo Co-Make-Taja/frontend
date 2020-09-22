@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {fetchIssues} from '../store/actions/issueActions'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux' 
 
 
 function LandingPage ({fetchIssues}) {
