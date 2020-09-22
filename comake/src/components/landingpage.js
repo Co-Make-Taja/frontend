@@ -11,6 +11,9 @@ function LandingPage ({fetchIssues}) {
 
 return(
     <div>Landing Page Test Div</div>
+    //state.issues.map((issue) => {
+    //return <Issues key = issue.id issue = {issue}/> 
+    //})
 )
 }
 
