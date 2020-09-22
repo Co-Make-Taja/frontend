@@ -15,9 +15,10 @@ export const fetchIssues = () => {
             type: FETCH_ISSUES
         })
         axios
+        
             .get("https://bw-comakeapp-java.herokuapp.com/issues/issues")
             .then((response) => {
-                console.log("Get Response", response)
+                console.log("Get Response", response.data)
                 dispatch({type: FETCH_ISSUES_SUCCESS, payload: response.data})
             })
         
@@ -27,10 +28,10 @@ export const fetchIssues = () => {
 export const logOut = () => {
     return(dispatch) => {
         const history = useHistory()
-    localStorage.removeItem('token')
-    history.push('/login')
-    dispatch({
-        type: LOG_OUT
+        localStorage.removeItem('token')
+        history.push('/login')
+            dispatch({
+            type: LOG_OUT
     })
 }
 }

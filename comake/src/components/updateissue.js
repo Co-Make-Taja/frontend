@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {useHistory, useParams} from 'react-router-dom'
 
-import {Issues} from './newissue'
+import {Issues} from './issue'
 
 const initialIssue = {
     issueid: "",
@@ -16,7 +16,9 @@ const initialIssue = {
 
 export const UpdateIssue = (props) => {
     const history = useHistory()
-    const id = useParams()
+    //const id = useParams()
+    const params = useParams();
+    const id = params.id
     const [someIssue, setSomeIssue] = useState(initialIssue)
 
 
@@ -27,13 +29,13 @@ const handleChanges = e => {
             [e.target.name]: e.target.value
     })
 }
-//componentDidMount()
 useEffect(() => {
     axios
-        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${id}`)
+        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
         .then(res => {
             console.log(res, "Getting specific issue")
             setSomeIssue(res.data)
+            console.log(res.data)
         })
 },[id])
 

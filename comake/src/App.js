@@ -20,7 +20,7 @@ function App() {
       {/* <PrivateRoute path = '/dashboard' component = {LandingPage}/> */}
       <Route path = '/dashboard' component = {LandingPage}/>
       <Route 
-      path = '/dashboard/ticket/update:id'
+      path = '/dashboard/ticket/update'
       render = {() => <UpdateIssue />}
       >
       </Route>

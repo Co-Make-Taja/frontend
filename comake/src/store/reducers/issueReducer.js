@@ -1,8 +1,11 @@
-import {FETCH_ISSUES, FETCH_ISSUES_SUCCESS} from '../actions/issueActions'
+import {FETCH_ISSUES, FETCH_ISSUES_SUCCESS, LOG_OUT} from '../actions/issueActions'
 
 const initialIssues = {
     issues: [
-        // {
+
+    ]
+
+            // {
         //     issueid: "",
         //     title: "Issue title",
         //     description: "Having an issue",
@@ -11,7 +14,6 @@ const initialIssues = {
         //     user: {},
         //     comments: []
         // }
-    ]
 }
 
 export const issueReducer = (state = initialIssues, action) => {
@@ -25,6 +27,12 @@ export const issueReducer = (state = initialIssues, action) => {
             return{
                 ...state,
                 issues: action.payload
+            }
+
+
+        case LOG_OUT:
+            return{
+                ...state,
             }
         default:
             return state;
