@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
+import LandingPage from './components/landingpage'
+
 import './App.css';
 import AuthPage from './components/AuthPage'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
@@ -7,7 +8,9 @@ import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams 
 
 function App() {
   return (
-    <div>
+    <div className="App">
+      <LandingPage />
+
       <AuthPage></AuthPage>
     </div>
     // <div className="App">
