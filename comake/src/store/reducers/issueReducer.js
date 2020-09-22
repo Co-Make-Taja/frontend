@@ -1,7 +1,17 @@
 import {FETCH_ISSUES, FETCH_ISSUES_SUCCESS} from '../actions/issueActions'
 
 const initialIssues = {
-    issues: []
+    issues: [
+        // {
+        //     issueid: "",
+        //     title: "Issue title",
+        //     description: "Having an issue",
+        //     image: "Image url here",
+        //     category: {},
+        //     user: {},
+        //     comments: []
+        // }
+    ]
 }
 
 export const issueReducer = (state = initialIssues, action) => {

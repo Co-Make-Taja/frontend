@@ -14,11 +14,11 @@ const initialIssue = {
     comments: []
 }
 
-export const updateIssue = (props) => {
+export const UpdateIssue = (props) => {
     const history = useHistory()
-    const {id} = useParams()
+    const id = useParams()
     const [someIssue, setSomeIssue] = useState(initialIssue)
-}
+
 
 const handleChanges = e => {
     e.preventDefault()
@@ -27,17 +27,17 @@ const handleChanges = e => {
             [e.target.name]: e.target.value
     })
 }
-
+//componentDidMount()
 useEffect(() => {
     axios
-        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
+        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${id}`)
         .then(res => {
             console.log(res, "Getting specific issue")
             setSomeIssue(res.data)
         })
 },[id])
 
-submitChange (() => {
+const submitChange = (e => {
     e.preventDefault()
     axios
         .put(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
@@ -84,3 +84,4 @@ return (
         <button>Submit</button>
     </form>
 )
+}

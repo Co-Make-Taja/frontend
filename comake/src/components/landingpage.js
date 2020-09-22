@@ -11,10 +11,15 @@ function LandingPage ({fetchIssues}, props) {
         fetchIssues();
     }, [fetchIssues])
 
+//comment this out once map is working
+const id = "id"    
+
 return(
     <div>
-        <p>From the LandingPage</p>
-        <Issues />
+        From the LandingPage
+        <button>Logout</button>
+        <button>Post a new issue</button>
+        <Issues id = {id}/>
         {/* <Issues />
         {props.issues.map((issue) => (
              <Issues key = {issue.id} issue = {issue}/> 
