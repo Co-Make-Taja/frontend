@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { useParams } from "react-router-dom";
+import {useHistory} from 'react-router-dom'
 
 export function Issues(){
     return(
