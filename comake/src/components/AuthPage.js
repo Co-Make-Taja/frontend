@@ -3,16 +3,21 @@ import SignUp from './SignUp'
 import Login from './LogIn'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
 
+import Header from './Visual/Header'
+import Footer from './Visual/Footer'
+
 export default function AuthPage() {
-    const [page, changePage] = useState('SignUp')
-
-
+    // const [page, changePage] = useState('SignUp')
 
     return (
         <div>
-            <Router>
-                {/* <Link to="login">Login</Link> */}
-                {page==='SignUp' ? <Link id="login" to={'/login'} onClick={()=>changePage('login')}> Have an account? Login!</Link> : <Link id="signup" onClick={()=> changePage('Login')}></Link>}
+            {/* <Header></Header> */}
+
+            {/* <Router> */}
+            <Header></Header>
+            <section class="inner">
+
+
 
                 <Switch>
                     <Route path="/login">
@@ -29,7 +34,13 @@ export default function AuthPage() {
                 </Switch>
 
 
-            </Router>
+
+            </section>
+
+            <Footer>
+
+            </Footer>
+            {/* </Router> */}
         </div>
     )
 }

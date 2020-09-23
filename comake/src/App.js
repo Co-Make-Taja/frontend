@@ -1,18 +1,19 @@
 import React from 'react';
 import LandingPage from './components/landingpage'
 
-import './App.css';
+// import './Styles.css';
 import AuthPage from './components/AuthPage'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
 
 
 function App() {
   return (
-    <div className="App">
-      <LandingPage />
+    <Router>
+      <div className="App">
 
-      <AuthPage></AuthPage>
-    </div>
+        <AuthPage></AuthPage>
+      </div>
+    </Router>
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
