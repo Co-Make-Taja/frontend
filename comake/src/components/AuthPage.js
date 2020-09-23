@@ -11,9 +11,7 @@ export default function AuthPage() {
 
     return (
         <div>
-            {/* <Header></Header> */}
 
-            {/* <Router> */}
             <Header></Header>
             <section class="inner">
 
