@@ -44,11 +44,15 @@ const [newIssue, setNewIssue] = useState(initialValues)
             .then((res) => {
                 console.log("New Issue created", res)
                 setNewIssue(initialValues)
-                //history.push(`/movies/${id}`) //redirects to page with newly updated movie
+                history.push(`/dashboard`) //redirects to page with newly updated movie
             })
             .catch(err => {
                 console.log(err)
             })
+    }
+
+    const cancelButton = e => {
+        history.push('/dashboard')
     }
     
 
@@ -64,16 +68,31 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 placeholder= "Title of Issue"
                 >
                 </input>
-                <br></br>
+                {/* <br></br>
 
                 <input
                 type = 'text'
                 name = "description"
                 onChange = {handleChanges}
                 value = {newIssue.description}
-                placeholder = "Description of Issue"
+                placeholder = "Description of Issue"   
+                >      
+                </input> */}
+                <br></br>
+                
+                <textarea 
+                type = 'text'
+                name= "description" 
+                rows= "3"
+                
+                cols = "50"
+                value = {newIssue.description}
+                onChange = {handleChanges}
+                placeholder = 'Description of Issue'
                 >
-                </input>
+                
+                </textarea>
+                
                 <br></br>
 
                 <input
@@ -124,6 +143,7 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 </input> */}
                 <br></br>
                 <button onClick = {submitIssue}>Submit</button>
+                <button onClick = {cancelButton}>Cancel</button>
             </form>
         </div>
     )
