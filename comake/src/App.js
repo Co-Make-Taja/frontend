@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams,
 import {PrivateRoute} from './utils/privateRoute'
 
 import {UpdateIssue} from './components/updateissue'
+import { NewIssue } from './components/newissue';
 
 
 function App() {
@@ -17,14 +18,24 @@ function App() {
       
 
       <AuthPage></AuthPage>
+      <Switch>
       {/* <PrivateRoute path = '/dashboard' component = {LandingPage}/> */}
-      <Route path = '/dashboard' component = {LandingPage}/>
       <Route 
-      path = '/dashboard/ticket/update'
+        path = '/dashboard' component = {LandingPage}/>
+      
+      <Route 
+      path = '/update-issue/:id'
       render = {() => <UpdateIssue />}
       >
       </Route>
-      
+
+      <Route
+      path = '/new-issue' component = {NewIssue}>        
+      </Route>
+      <Route
+      path = '/issues' component = {UpdateIssue}>        
+      </Route>
+      </Switch>
 
     </div>
      

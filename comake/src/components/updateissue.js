@@ -17,8 +17,11 @@ const initialIssue = {
 export const UpdateIssue = (props) => {
     const history = useHistory()
     //const id = useParams()
+    
     const params = useParams();
-    const id = params.id
+    //const id = params.id
+    const {id} = useParams()
+
     const [someIssue, setSomeIssue] = useState(initialIssue)
 
 
@@ -29,15 +32,25 @@ const handleChanges = e => {
             [e.target.name]: e.target.value
     })
 }
-useEffect(() => {
+
+const getIssue = (id) => {
     axios
-        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
+        //.get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
+        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${params.id}`)
         .then(res => {
             console.log(res, "Getting specific issue")
             setSomeIssue(res.data)
             console.log(res.data)
         })
-},[id])
+        .catch(err => {console.log(err)})
+}
+
+
+useEffect(() => {
+    getIssue(params.id)
+    console.log("This is params", params)
+
+},[params.id])
 
 const submitChange = (e => {
     e.preventDefault()
@@ -49,6 +62,12 @@ const submitChange = (e => {
             history.push(`/dashboard/${id}`)
         })
 })
+const handleDropdown = event => {
+    setSomeIssue({
+      ...someIssue,
+        category: event.target.value
+    });
+  };
 
 return ( 
     <form onSubmit = {submitChange}>
@@ -69,20 +88,44 @@ return (
         />
 
         <input
-        type = 'text'
-        name = 'title'
-        onChange = {handleChanges}
-        value = {someIssue.title}
-        placeholder = "Issue Titles"
-        />
-
-        <input
-        type = 'text'
+        type = 'url'
         name = 'image'
         onChange = {handleChanges}
         value = {someIssue.image}
         placeholder = "Image of issue"
         />
+
+                
+        <br></br>
+        <label htmlFor="Category">Category:  </label>
+        <select value = {someIssue.category} onChange = {handleDropdown} >
+        <option value="Red">Red</option>
+        <option value="Green">Green</option>
+        <option value="Blue">Blue</option>
+        <option value="Orange">Orange</option>
+        </select>                
+        <br></br>
+
+        <input
+        type = 'text'
+        name = "user"
+        onChange = {handleChanges}
+        value = {someIssue.user}
+        placeholder = "User"
+        >
+        </input>
+        <br></br>
+
+        <input
+        type = 'text'
+        name = "comments"
+        onChange = {handleChanges}
+        value = {someIssue.comments}
+        placeholder = "Comments"
+        >
+        </input>
+        <br></br>
+
         <button>Submit</button>
     </form>
 )

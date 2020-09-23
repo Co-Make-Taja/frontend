@@ -1,9 +1,9 @@
 import {FETCH_ISSUES, FETCH_ISSUES_SUCCESS, LOG_OUT} from '../actions/issueActions'
 
 const initialIssues = {
-    issues: [
-
-    ]
+    issues: []
+}
+    
 
             // {
         //     issueid: "",
@@ -13,8 +13,9 @@ const initialIssues = {
         //     category: {},
         //     user: {},
         //     comments: []
+        //add error and 
         // }
-}
+
 
 export const issueReducer = (state = initialIssues, action) => {
     switch (action.type){

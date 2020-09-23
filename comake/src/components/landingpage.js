@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Issues} from './issue'
 import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import axios from 'axios'
 
 
@@ -17,17 +18,24 @@ function LandingPage ({fetchIssues, issues}) {
 
     
 
-    //get request
+//------------------------------------get request
     useEffect(() =>{
         fetchIssues();
     }, [fetchIssues])
+//------------------------------------get request
 
-
+//-----------------------------------------------------------------
     const history = useHistory()
+    const {id} = useParams()
+//-----------------------------------------------------------------
+
+
 
 //comment this out once map is working------------------------------
 //const id = "id"    
 //const checkIssues = () => {console.log(props)}
+
+//used for testing purposes-----------------------------------------
 const goGetIssues = () => {
     
     axios
@@ -42,13 +50,32 @@ const goGetIssues = () => {
 //------------------------------------------------------------------
 
 const newIssue = () => {
-    history.push('/newissue')
+    
+    history.push("/new-issue")
+}
+
+const updateButton = (e) => {
+    e.preventDefault()
+    console.log()
+    history.push(`/dashboard/ticket/update/${id}`)
+  }
+
+  const deleteButton = e => {
+    e.preventDefault()
+    axios
+        .post(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
+        .then(response => {
+            console.log("Issue deleted", response)
+            alert("Issue deleted")
+            history.push('/dashboard')
+        })
 }
 //-------------------------------------------------------------
 return(
     <div>
-        From the LandingPage
+        <h2>From the LandingPage</h2>
         <button>Logout</button>
+        <button onClick = {newIssue}>New Issue</button>
         {/* <button onClick = {newIssue}>Post a new issue</button> */}
         
         {/* <button onClick = {checkIssues} >Check issues</button> */}
@@ -62,7 +89,12 @@ return(
             issues.map(issue => {
                 return(
                     <div>
-                        {issue.title}
+                        
+                        <h3>{issue.title}</h3>
+                        <button onClick = {updateButton}>Update</button>
+                        <button onClick = {deleteButton}>Delete</button>
+                        <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}>Test</Link>
+                        
                     </div>
                 )
             })

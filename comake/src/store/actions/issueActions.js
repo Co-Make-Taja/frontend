@@ -21,6 +21,7 @@ export const fetchIssues = () => {
                 console.log("Get Response", response.data)
                 dispatch({type: FETCH_ISSUES_SUCCESS, payload: response.data})
             })
+            .catch(err => {console.log(err)})
         
     }
 }
