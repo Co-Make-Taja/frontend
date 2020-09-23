@@ -15,6 +15,8 @@ import axios from 'axios'
 function LandingPage ({fetchIssues, issues}) {
 //function LandingPage ({fetchIssues, issues}) {
 
+//--------------------------------Page reload state---
+const [issueDeleted, setIssueDeleted] = useState(false)
 
     
 
@@ -95,15 +97,19 @@ return(
                         .delete(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${issue.issueid}`)
                         .then(response => {
                             console.log("Issue deleted", response)
+                            setIssueDeleted(!issueDeleted)
                             alert(`Issue: ${issue.title} has been deleted`)
                             history.push('/dashboard')
                         })
+                        //.finally(() => {history.push('/dashboard')})
                 }
                 return(
                     <div>
                         {}
                         
                         <h3>{issue.title}</h3>
+                        <h2><img src = {issue.image} width = "250" height = "250"></img></h2>
+                        <h4>{issue.description}</h4>
                         <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}><button>Update</button></Link>
                         <button onClick = {deleteButton}>Delete</button>
                         
