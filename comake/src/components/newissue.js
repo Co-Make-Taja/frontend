@@ -11,13 +11,13 @@ const params = useParams();
 const id = params.id
 
 const initialValues = {
-    issueid: "",
+    //issueid: "",
     title: "",
     description: "",
     image: "",
-    category: {},
-    user: {},
-    comments: []
+    categoryid: "",
+   // user: {},
+    //comments: []
 
 }
 const [newIssue, setNewIssue] = useState(initialValues)
@@ -33,7 +33,7 @@ const [newIssue, setNewIssue] = useState(initialValues)
     const handleDropdown = event => {
         setNewIssue({
           ...newIssue,
-            category: event.target.value
+            categoryid: event.target.value
         });
       };
 
@@ -86,16 +86,25 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 >
                 </input>
                 <br></br>
-                <label htmlFor="Category">Category:  </label>
-                <select value = {newIssue.category} onChange = {handleDropdown} >
-                <option value="Red">Red</option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Orange">Orange</option>
+                <label htmlFor="Category">  </label>
+                <select value = {newIssue.categoryid} onChange = {handleDropdown}>
+                <option value={1}>Announcement</option>
+                <option value={2}>Community Activities</option>
+                <option value={3}>Crime & Safety</option>
+                <option value={4}>Flooding</option>
+                <option value={5}>General</option>
+                <option value={6}>Holiday</option>
+                <option value={7}>Lost & Found</option>
+                <option value={8}>Pets</option>
+                <option value={9}>Recommendation</option>
+                <option value={10}>Road Closure & Transportation</option>
+                <option value={11}>School & Education</option>
+                <option value={12}>Utilities</option>
+                <option value={13}>Yard and Lawn</option>
                 </select>                
                 <br></br>
 
-                <input
+                {/* <input
                 type = 'text'
                 name = "user"
                 onChange = {handleChanges}
@@ -103,16 +112,16 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 placeholder = "User"
                 >
                 </input>
-                <br></br>
+                <br></br> */}
 
-                <input
+                {/* <input
                 type = 'text'
                 name = "comments"
                 onChange = {handleChanges}
                 value = {newIssue.comments}
                 placeholder = "Comments"
                 >
-                </input>
+                </input> */}
                 <br></br>
                 <button onClick = {submitIssue}>Submit</button>
             </form>

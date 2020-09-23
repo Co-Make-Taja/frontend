@@ -5,13 +5,13 @@ import {useHistory, useParams} from 'react-router-dom'
 import {Issues} from './issue'
 
 const initialIssue = {
-    issueid: "",
+    //issueid: "",
     title: "Issue title",
     description: "Having an issue",
     image: "Image url here",
-    category: {},
-    user: {},
-    comments: []
+    categoryid: "",
+    //user: {},
+    //comments: []
 }
 
 export const UpdateIssue = (props) => {
@@ -36,7 +36,7 @@ const handleChanges = e => {
 const getIssue = (id) => {
     axios
         //.get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
-        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${params.id}`)
+        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${params.id}`)
         .then(res => {
             console.log(res, "Getting specific issue")
             setSomeIssue(res.data)
@@ -55,10 +55,10 @@ useEffect(() => {
 const submitChange = (e => {
     e.preventDefault()
     axios
-        .put(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
+        .put(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${id}`, someIssue)
         .then(res => {
             console.log(res, "Put request to update issue")
-            setSomeIssue(initialIssue)
+            //setSomeIssue(initialIssue)
             history.push(`/dashboard/${id}`)
         })
 })
@@ -97,16 +97,24 @@ return (
 
                 
         <br></br>
-        <label htmlFor="Category">Category:  </label>
-        <select value = {someIssue.category} onChange = {handleDropdown} >
-        <option value="Red">Red</option>
-        <option value="Green">Green</option>
-        <option value="Blue">Blue</option>
-        <option value="Orange">Orange</option>
-        </select>                
-        <br></br>
+        <label htmlFor="Category">  </label>
+                <select value = {someIssue.categoryid} onChange = {handleDropdown}>
+                <option value={1}>Announcement</option>
+                <option value={2}>Community Activities</option>
+                <option value={3}>Crime & Safety</option>
+                <option value={4}>Flooding</option>
+                <option value={5}>General</option>
+                <option value={6}>Holiday</option>
+                <option value={7}>Lost & Found</option>
+                <option value={8}>Pets</option>
+                <option value={9}>Recommendation</option>
+                <option value={10}>Road Closure & Transportation</option>
+                <option value={11}>School & Education</option>
+                <option value={12}>Utilities</option>
+                <option value={13}>Yard and Lawn</option>
+        </select>  
 
-        <input
+        {/* <input
         type = 'text'
         name = "user"
         onChange = {handleChanges}
@@ -124,7 +132,7 @@ return (
         placeholder = "Comments"
         >
         </input>
-        <br></br>
+        <br></br> */}
 
         <button>Submit</button>
     </form>

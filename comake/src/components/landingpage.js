@@ -60,16 +60,17 @@ const updateButton = (e) => {
     history.push(`/dashboard/ticket/update/${id}`)
   }
 
-  const deleteButton = e => {
-    e.preventDefault()
-    axios
-        .post(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
-        .then(response => {
-            console.log("Issue deleted", response)
-            alert("Issue deleted")
-            history.push('/dashboard')
-        })
-}
+//   const deleteButton = e => {
+//     e.preventDefault()
+//     axios
+//         //.post(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
+//         .post(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${issue.issueid}`)
+//         .then(response => {
+//             console.log("Issue deleted", response)
+//             alert("Issue deleted")
+//             history.push('/dashboard')
+//         })
+// }
 //-------------------------------------------------------------
 return(
     <div>
@@ -87,13 +88,25 @@ return(
              
             // console.log("Test console log", issues)
             issues.map(issue => {
+                const deleteButton = e => {
+                    e.preventDefault()
+                    axios
+                        //.post(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
+                        .delete(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${issue.issueid}`)
+                        .then(response => {
+                            console.log("Issue deleted", response)
+                            alert(`Issue: ${issue.title} has been deleted`)
+                            history.push('/dashboard')
+                        })
+                }
                 return(
                     <div>
+                        {}
                         
                         <h3>{issue.title}</h3>
-                        <button onClick = {updateButton}>Update</button>
+                        <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}><button>Update</button></Link>
                         <button onClick = {deleteButton}>Delete</button>
-                        <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}>Test</Link>
+                        
                         
                     </div>
                 )
