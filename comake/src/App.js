@@ -3,33 +3,43 @@ import LandingPage from './components/landingpage'
 
 // import './Styles.css';
 import AuthPage from './components/AuthPage'
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams, BrowserRouter } from "react-router-dom";
+import {PrivateRoute} from './utils/privateRoute'
+
+import {UpdateIssue} from './components/updateissue'
+import { NewIssue } from './components/newissue';
 
 
 function App() {
   return (
     <Router>
-      <div className="App">
+    <div className="App">
+      
+      
 
-        <AuthPage></AuthPage>
-      </div>
+      <AuthPage></AuthPage>
+      <Switch>
+      {/* <PrivateRoute path = '/dashboard' component = {LandingPage}/> */}
+      <Route 
+        path = '/dashboard' component = {LandingPage}/>
+      
+      <Route 
+      path = '/update-issue/:id'
+      render = {() => <UpdateIssue />}
+      >
+      </Route>
+
+      <Route
+      path = '/new-issue' component = {NewIssue}>        
+      </Route>
+      <Route
+      path = '/issues' component = {UpdateIssue}>        
+      </Route>
+      </Switch>
+
+    </div>
+     
     </Router>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 
