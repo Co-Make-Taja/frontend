@@ -35,9 +35,9 @@ export default function AuthPage() {
 
             </section>
 
-            <Footer>
+            {/* <Footer>
 
-            </Footer>
+            </Footer> */}
             {/* </Router> */}
         </div>
     )

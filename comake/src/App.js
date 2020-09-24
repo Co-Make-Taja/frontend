@@ -8,6 +8,7 @@ import {PrivateRoute} from './utils/privateRoute'
 
 import {UpdateIssue} from './components/updateissue'
 import { NewIssue } from './components/newissue';
+import Footer from './components/Visual/Footer'
 
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
       
 
       <AuthPage></AuthPage>
+      
       <Switch>
+      
       {/* <PrivateRoute path = '/dashboard' component = {LandingPage}/> */}
       <Route 
         path = '/dashboard' component = {LandingPage}/>
@@ -36,6 +39,7 @@ function App() {
       path = '/issues' component = {UpdateIssue}>        
       </Route>
       </Switch>
+      <Footer></Footer>
 
     </div>
      
