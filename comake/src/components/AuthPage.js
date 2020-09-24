@@ -14,7 +14,7 @@ export default function AuthPage() {
 
             <Header></Header>
             <section class="inner">
-
+            
 
 
                 <Switch>

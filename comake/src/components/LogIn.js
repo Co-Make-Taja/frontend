@@ -13,7 +13,7 @@ export default function Login() {
         username: '',
         password: ''
     })
-
+console.log("Console tesT", loginData.username)
     const [errors, changeErrors] = useState({
         username: '',
         password: ''

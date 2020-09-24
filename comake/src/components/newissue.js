@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import {useHistory, useParams} from 'react-router-dom'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+
 
 
 
@@ -10,12 +12,22 @@ const history = useHistory()
 const params = useParams();
 const id = params.id
 
+// const initialValues = {
+//     //issueid: "",
+//     title: "",
+//     description: "",
+//     image: "",
+//     categoryid: "",
+//    // user: {},
+//     //comments: []
+
+// }
 const initialValues = {
     //issueid: "",
     title: "",
     description: "",
     image: "",
-    categoryid: "",
+    category: {categoryid: "" }
    // user: {},
     //comments: []
 
@@ -30,17 +42,26 @@ const [newIssue, setNewIssue] = useState(initialValues)
         })
     }
 
+    // const handleDropdown = event => {
+    //     setNewIssue({
+    //       ...newIssue,
+    //         categoryid: event.target.value
+    //     });
+    //   };
     const handleDropdown = event => {
-        setNewIssue({
-          ...newIssue,
-            categoryid: event.target.value
+        setNewIssue({          
+        ...newIssue,
+            category: {categoryid: event.target.value}
+            //category: event.target.value
         });
       };
 
     const submitIssue = (e) => {
         e.preventDefault()
-        axios
-            .post(`https://bw-comakeapp-java.herokuapp.com/issues/issue`, newIssue)
+        //axios
+        axiosWithAuth()
+           // .post(`https://bw-comakeapp-java.herokuapp.com/issues/issue`, newIssue)
+           .post(`/issues/issue`, newIssue)
             .then((res) => {
                 console.log("New Issue created", res)
                 setNewIssue(initialValues)
@@ -57,10 +78,11 @@ const [newIssue, setNewIssue] = useState(initialValues)
     
 
     return(
-        <div>
-            <h1>This here is a new issue</h1>
+        <div className = "nDashboardContainers">
+            
             <form>
-                <input
+                {/* <label for = "title">Post Title:</label> */}
+                <input className = "nFormInputs"
                 type = 'text'
                 name = "title"
                 onChange = {handleChanges}
@@ -100,13 +122,32 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 name = "image"
                 onChange = {handleChanges}
                 value = {newIssue.image}
-                placeholder = "Upload an image"
-                
+                placeholder = "Image url"                
                 >
                 </input>
+
                 <br></br>
-                <label htmlFor="Category">  </label>
+                {/* <label htmlFor="Category"> Post Type: </label>
                 <select value = {newIssue.categoryid} onChange = {handleDropdown}>
+                <option value={4}>Announcement</option>
+                <option value={5}>Community Activities</option>
+                <option value={3}>Crime & Safety</option>
+                <option value={4}>Flooding</option>
+                <option value={5}>General</option>
+                <option value={6}>Holiday</option>
+                <option value={7}>Lost & Found</option>
+                <option value={8}>Pets</option>
+                <option value={9}>Recommendation</option>
+                <option value={10}>Road Closure & Transportation</option>
+                <option value={11}>School & Education</option>
+                <option value={12}>Utilities</option>
+                <option value={13}>Yard and Lawn</option>
+                </select>                 */}
+                <br></br>
+
+                <br></br>
+                <label htmlFor="Category"> Post Type: </label>
+                <select value = {newIssue.category.categoryid} onChange = {handleDropdown}>
                 <option value={1}>Announcement</option>
                 <option value={2}>Community Activities</option>
                 <option value={3}>Crime & Safety</option>
@@ -122,25 +163,6 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 <option value={13}>Yard and Lawn</option>
                 </select>                
                 <br></br>
-
-                {/* <input
-                type = 'text'
-                name = "user"
-                onChange = {handleChanges}
-                value = {newIssue.user}
-                placeholder = "User"
-                >
-                </input>
-                <br></br> */}
-
-                {/* <input
-                type = 'text'
-                name = "comments"
-                onChange = {handleChanges}
-                value = {newIssue.comments}
-                placeholder = "Comments"
-                >
-                </input> */}
                 <br></br>
                 <button onClick = {submitIssue}>Submit</button>
                 <button onClick = {cancelButton}>Cancel</button>

@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import axios from 'axios'
+import { axiosWithAuth } from '../store/axiosWithAuth'
 
 
 
@@ -75,24 +76,20 @@ const updateButton = (e) => {
 // }
 //-------------------------------------------------------------
 return(
-    <div>
-        <h2>From the LandingPage</h2>
-        <button>Logout</button>
-        <button onClick = {newIssue}>New Issue</button>
-        {/* <button onClick = {newIssue}>Post a new issue</button> */}
+    <div className = "nDashboardContainers">
         
-        {/* <button onClick = {checkIssues} >Check issues</button> */}
-        {/* <button onClick = {goGetIssues}>Check Fetch response</button> */}
-    {/* {     console.log("Props test",propsTest)} */}
-        {/* <Issues id = {id}/> */}
-
-        {
-             
-            // console.log("Test console log", issues)
+        <div className = 'nDashboardButtonDiv' onClick = {newIssue}>        
+        {/* <button onClick = {newIssue} className = "form button">New Issue</button> */}
+        <p onClick = {newIssue} className = "nDashboardP">Post A New Issue</p>
+        </div>
+        
+        {             
+            //--------------------------------------------------------------------            
             issues.map(issue => {
+    
                 const deleteButton = e => {
                     e.preventDefault()
-                    axios
+                    axiosWithAuth()
                         //.post(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
                         .delete(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${issue.issueid}`)
                         .then(response => {
@@ -100,16 +97,20 @@ return(
                             setIssueDeleted(!issueDeleted)
                             alert(`Issue: ${issue.title} has been deleted`)
                             history.push('/dashboard')
+                            window.location.reload()
                         })
                         //.finally(() => {history.push('/dashboard')})
                 }
+                //--------------------------------------------------------------------
                 return(
-                    <div>
-                        {}
+                    <div className="nDashboardDivs">
+                        {/* {} */}
                         
-                        <h3>{issue.title}</h3>
+                        <h3 className="nTitles">{issue.title}</h3>
                         <h2><img src = {issue.image} width = "250" height = "250"></img></h2>
-                        <h4>{issue.description}</h4>
+                        <h4 className = "nDescriptions">{issue.description}</h4>
+                        <h4>{issue.comments}</h4>
+                        <Link key = {issue.id} to ={`/add-comment/${issue.issueid}`}><button>Comment</button></Link>
                         <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}><button>Update</button></Link>
                         <button onClick = {deleteButton}>Delete</button>
                         

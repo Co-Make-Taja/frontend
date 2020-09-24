@@ -1,7 +1,7 @@
 import React from 'react';
 import LandingPage from './components/landingpage'
 
-// import './Styles.css';
+import './components/Styles.css';
 import AuthPage from './components/AuthPage'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams, BrowserRouter } from "react-router-dom";
 import {PrivateRoute} from './utils/privateRoute'
@@ -9,6 +9,9 @@ import {PrivateRoute} from './utils/privateRoute'
 import {UpdateIssue} from './components/updateissue'
 import { NewIssue } from './components/newissue';
 import Footer from './components/Visual/Footer'
+import LogIn from './components/LogIn'
+import Login from './components/LogIn';
+import {AddComment} from './components/addComment'
 
 
 function App() {
@@ -22,13 +25,18 @@ function App() {
       
       <Switch>
       
-      {/* <PrivateRoute path = '/dashboard' component = {LandingPage}/> */}
-      <Route 
-        path = '/dashboard' component = {LandingPage}/>
+      <PrivateRoute path = '/dashboard' component = {LandingPage}/>
+      {/* <Route 
+        path = '/dashboard' component = {LandingPage}/>       */}
       
-      <Route 
+      <Route
       path = '/update-issue/:id'
       render = {() => <UpdateIssue />}
+      >
+      </Route>
+      <Route
+      path = '/add-comment/:id'
+      render = {() => <AddComment />}
       >
       </Route>
 

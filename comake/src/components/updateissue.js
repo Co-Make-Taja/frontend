@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {useHistory, useParams} from 'react-router-dom'
-
 import {Issues} from './issue'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 const initialIssue = {
     //issueid: "",
@@ -34,9 +34,10 @@ const handleChanges = e => {
 }
 
 const getIssue = (id) => {
-    axios
+    //axios
         //.get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
-        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${params.id}`)
+        axiosWithAuth()
+        .get(`/issues/issue/${params.id}`)
         .then(res => {
             console.log(res, "Getting specific issue")
             setSomeIssue(res.data)
@@ -54,7 +55,8 @@ useEffect(() => {
 
 const submitChange = (e => {
     e.preventDefault()
-    axios
+    //axios
+    axiosWithAuth()
         .put(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${id}`, someIssue)
         .then(res => {
             console.log(res, "Put request to update issue")
@@ -69,24 +71,39 @@ const handleDropdown = event => {
     });
   };
 
+  const cancelButton = e => {
+    history.push('/dashboard')
+}
+
 return ( 
-    <form onSubmit = {submitChange}>
-        <input
+    <div className ="nDashboardContainers">
+    <form>
+        <input className = "nFormInputs"
         type = 'text'
         name = 'title'
         onChange = {handleChanges}
         value = {someIssue.title}
         placeholder = "Issue Titles"
         />
-
-        <input
+<br></br>
+        {/* <input
         type = 'text'
         name = 'description'
         onChange = {handleChanges}
         value = {someIssue.description}
         placeholder = "Issue Description"
-        />
-
+        /> */}
+        <textarea 
+                type = 'text'
+                name= "description" 
+                rows= "3"
+                
+                cols = "50"
+                value = {someIssue.description}
+                onChange = {handleChanges}
+                placeholder = 'Description of Issue'
+                ></textarea>
+<br></br>
         <input
         type = 'url'
         name = 'image'
@@ -134,7 +151,10 @@ return (
         </input>
         <br></br> */}
 
-        <button>Submit</button>
+        <button onClick = {submitChange}>Submit</button>
+        <button onClick = {cancelButton}>Cancel</button>
+        
     </form>
+    </div>
 )
 }
