@@ -30,6 +30,9 @@ const [issueDeleted, setIssueDeleted] = useState(false)
 //-----------------------------------------------------------------
     const history = useHistory()
     const {id} = useParams()
+///////////////////////////////////////UPVOTES////////////////////
+    //const [upVotes, setUpVotes] = useState({upvote: ""})
+
 //-----------------------------------------------------------------
 
 
@@ -86,7 +89,7 @@ return(
         {             
             //--------------------------------------------------------------------            
             issues.map(issue => {
-    
+                    
                 const deleteButton = e => {
                     e.preventDefault()
                     axiosWithAuth()
@@ -101,6 +104,25 @@ return(
                         })
                         //.finally(() => {history.push('/dashboard')})
                 }
+
+                // const updateUpvotes = () => {
+                //     axiosWithAuth()
+
+                //     .patch(`/issues/issue/${issue.issueid}/upvote`, {upvote: upvoteCount})
+                //     console.log (issue.upvote)                   
+
+                //     }
+                    
+                        // localStorage.setItem(`upvotes ${issue.issueid}`, "")
+
+                        // function increaseUpvote(){
+                        //     let upVoteCount = localStorage.getItem(`upvotes ${issue.issueid}`)
+                        //     localStorage.setItem(upVoteCount, upVoteCount++)
+                        // }
+    
+                        
+                
+                
                 //--------------------------------------------------------------------
                 return(
                     <div className="nDashboardDivs">
@@ -113,6 +135,9 @@ return(
                         <Link key = {issue.id} to ={`/add-comment/${issue.issueid}`}><button>Comment</button></Link>
                         <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}><button>Update</button></Link>
                         <button onClick = {deleteButton}>Delete</button>
+                        <br></br>
+                        <button >Upvote</button>
+                        <h4>Upvotes: {issue.upvote}</h4>
                         
                         
                     </div>
