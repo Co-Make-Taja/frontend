@@ -561,3 +561,32 @@ h2{
   transition:.25s;
   transform: scale(1.05, 1.05);
 }
+
+
+/* App styles************************************* */
+.nDashboardContainers{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+align-content: center;
+}
+.nDashboardDivs{
+  width: 50%;
+  text-align: center;  
+  padding-top: 4%;
+}
+.nDashboardButtonDiv{
+  width: 100%;  
+  display: flex;
+  justify-content: center;
+  background-color: var(--prussianBlue);
+  font-size: 5vh;  
+}
+.dashboardButton{
+  background-color: honeydew;
+}
+.nDashboardP{
+  font-size: inherit;
+  color: honeydew;
+}

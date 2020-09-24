@@ -57,9 +57,10 @@ const [newIssue, setNewIssue] = useState(initialValues)
     
 
     return(
-        <div>
-            <h1>This here is a new issue</h1>
+        <div className = "nDashboardContainers">
+            
             <form>
+                {/* <label for = "title">Post Title:</label> */}
                 <input
                 type = 'text'
                 name = "title"
@@ -100,12 +101,12 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 name = "image"
                 onChange = {handleChanges}
                 value = {newIssue.image}
-                placeholder = "Upload an image"
-                
+                placeholder = "Image url"                
                 >
                 </input>
+
                 <br></br>
-                <label htmlFor="Category">  </label>
+                <label htmlFor="Category"> Type: </label>
                 <select value = {newIssue.categoryid} onChange = {handleDropdown}>
                 <option value={1}>Announcement</option>
                 <option value={2}>Community Activities</option>

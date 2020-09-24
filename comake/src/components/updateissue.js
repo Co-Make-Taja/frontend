@@ -69,8 +69,12 @@ const handleDropdown = event => {
     });
   };
 
+  const cancelButton = e => {
+    history.push('/dashboard')
+}
+
 return ( 
-    <form onSubmit = {submitChange}>
+    <form>
         <input
         type = 'text'
         name = 'title'
@@ -134,7 +138,9 @@ return (
         </input>
         <br></br> */}
 
-        <button>Submit</button>
+        <button onClick = {submitChange}>Submit</button>
+        <button onClick = {cancelButton}>Cancel</button>
+        
     </form>
 )
 }
