@@ -12,7 +12,7 @@ export default function AuthPage() {
     return (
         <div>
 
-            <Header></Header>
+            {/* <Header></Header> */}
             <section class="inner">
 
 
@@ -35,9 +35,9 @@ export default function AuthPage() {
 
             </section>
 
-            <Footer>
+            {/* <Footer>
 
-            </Footer>
+            </Footer> */}
             {/* </Router> */}
         </div>
     )

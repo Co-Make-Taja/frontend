@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import Input from './Input'
 // import UseIsMount, { useIsMount } from './UseIsMount'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
+import Axios from 'axios';
 
 export default function SignUp() {
 
@@ -137,9 +138,30 @@ export default function SignUp() {
         // schema.validate(value)
     }
 
+    const signup = (event) => {
+        event.preventDefault()
+        console.log(fieldData)
+        Axios.post("https://bw-comakeapp-java.herokuapp.com/createnewuser",{
+            username: fieldData.username,
+            password: fieldData.password,
+            phone: fieldData.phone,
+            primaryemail: fieldData.email
+        })
+
+            .then(
+                (res) => {
+                    console.log(res.data)
+                    localStorage.setItem("token", res.data.access_token);
+                    // history.push("/dashboard");
+                }
+            )
+
+
+    }
+
     return (
 
-        <div class="form-outer">
+        <div class="form-outer" onSubmit={signup}>
             <h2>Sign up</h2>
 
             {/* <Form data={data} schema = {schema} inputChange={inputChange} nameLabels={nameLabels}></Form> */}
