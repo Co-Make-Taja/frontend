@@ -63,7 +63,9 @@ const submitComment = (e) => {
             console.log("New comment created", res)
             setComment(initialValues)
             //history.push(`/dashboard`) 
-            history.push(`/add-comment/${params.id}`) 
+            //history.push(`/add-comment/${params.id}`) 
+            history.push(`/dashboard`) 
+
             window.location.reload()
         })
         .catch(err => {
