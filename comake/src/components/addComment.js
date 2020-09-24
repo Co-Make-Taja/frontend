@@ -94,6 +94,7 @@ return(
                             
                         alert(`Comment: ${comment.commentid} has been deleted`)
                         history.push(`/add-comment/${params.id}`) 
+                        window.location.reload()
                     })
                     //.finally(() => {history.push('/dashboard')})
             }
