@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {useHistory, useParams} from 'react-router-dom'
-
 import {Issues} from './issue'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 const initialIssue = {
     //issueid: "",
@@ -34,9 +34,10 @@ const handleChanges = e => {
 }
 
 const getIssue = (id) => {
-    axios
+    //axios
         //.get(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
-        .get(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${params.id}`)
+        axiosWithAuth()
+        .get(`/issues/issue/${params.id}`)
         .then(res => {
             console.log(res, "Getting specific issue")
             setSomeIssue(res.data)
@@ -54,7 +55,8 @@ useEffect(() => {
 
 const submitChange = (e => {
     e.preventDefault()
-    axios
+    //axios
+    axiosWithAuth()
         .put(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${id}`, someIssue)
         .then(res => {
             console.log(res, "Put request to update issue")

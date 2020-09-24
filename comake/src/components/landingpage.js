@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import axios from 'axios'
+import { axiosWithAuth } from '../store/axiosWithAuth'
 
 
 
@@ -88,7 +89,7 @@ return(
     
                 const deleteButton = e => {
                     e.preventDefault()
-                    axios
+                    axiosWithAuth()
                         //.post(`https://bw-comakeapp-java.herokuapp.com/issues/issues/${id}`)
                         .delete(`https://bw-comakeapp-java.herokuapp.com/issues/issue/${issue.issueid}`)
                         .then(response => {
@@ -96,6 +97,7 @@ return(
                             setIssueDeleted(!issueDeleted)
                             alert(`Issue: ${issue.title} has been deleted`)
                             history.push('/dashboard')
+                            window.location.reload()
                         })
                         //.finally(() => {history.push('/dashboard')})
                 }

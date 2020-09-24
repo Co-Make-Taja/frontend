@@ -601,3 +601,13 @@ background-color: honeydew
 .nFormInputs{
   margin: 1% 0;
 }
+
+.nCommentDivs{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2% 0;  
+}
+.nCommentButton{
+  margin-left: 2%;
+}
