@@ -570,16 +570,18 @@ flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
 align-content: center;
+background-color: honeydew
 }
 .nDashboardDivs{
   width: 50%;
   text-align: center;  
   padding-top: 4%;
+  background-color: honeydew;
 }
 .nDashboardButtonDiv{
   width: 100%;  
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   background-color: var(--prussianBlue);
   font-size: 5vh;  
 }
@@ -589,4 +591,13 @@ align-content: center;
 .nDashboardP{
   font-size: inherit;
   color: honeydew;
+}
+.nDescriptions{
+  padding: 2% 0;  
+}
+.nTitles{
+  font-weight: bold;
+}
+.nFormInputs{
+  margin: 1% 0;
 }

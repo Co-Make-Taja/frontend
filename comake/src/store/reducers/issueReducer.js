@@ -1,7 +1,9 @@
 import {FETCH_ISSUES, FETCH_ISSUES_SUCCESS, LOG_OUT} from '../actions/issueActions'
 
 const initialIssues = {
-    issues: []
+    issues: [],
+    isloading: false,
+    
 }
     
 

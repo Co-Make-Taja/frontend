@@ -91,7 +91,7 @@ return(
                     <div className="nDashboardDivs">
                         {}
                         
-                        <h3>{comments.comment}</h3>
+                        <h3>{comment.user.username}: {comment.comment}</h3>
                         <button onClick = {deleteButton}>Delete</button>
                         
                         

@@ -74,23 +74,34 @@ const handleDropdown = event => {
 }
 
 return ( 
+    <div className ="nDashboardContainers">
     <form>
-        <input
+        <input className = "nFormInputs"
         type = 'text'
         name = 'title'
         onChange = {handleChanges}
         value = {someIssue.title}
         placeholder = "Issue Titles"
         />
-
-        <input
+<br></br>
+        {/* <input
         type = 'text'
         name = 'description'
         onChange = {handleChanges}
         value = {someIssue.description}
         placeholder = "Issue Description"
-        />
-
+        /> */}
+        <textarea 
+                type = 'text'
+                name= "description" 
+                rows= "3"
+                
+                cols = "50"
+                value = {someIssue.description}
+                onChange = {handleChanges}
+                placeholder = 'Description of Issue'
+                ></textarea>
+<br></br>
         <input
         type = 'url'
         name = 'image'
@@ -142,5 +153,6 @@ return (
         <button onClick = {cancelButton}>Cancel</button>
         
     </form>
+    </div>
 )
 }

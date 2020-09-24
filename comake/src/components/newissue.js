@@ -61,7 +61,7 @@ const [newIssue, setNewIssue] = useState(initialValues)
             
             <form>
                 {/* <label for = "title">Post Title:</label> */}
-                <input
+                <input className = "nFormInputs"
                 type = 'text'
                 name = "title"
                 onChange = {handleChanges}
@@ -106,7 +106,7 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 </input>
 
                 <br></br>
-                <label htmlFor="Category"> Type: </label>
+                <label htmlFor="Category"> Post Type: </label>
                 <select value = {newIssue.categoryid} onChange = {handleDropdown}>
                 <option value={1}>Announcement</option>
                 <option value={2}>Community Activities</option>

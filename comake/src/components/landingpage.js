@@ -102,11 +102,11 @@ return(
                 //--------------------------------------------------------------------
                 return(
                     <div className="nDashboardDivs">
-                        {}
+                        {/* {} */}
                         
-                        <h3>{issue.title}</h3>
+                        <h3 className="nTitles">{issue.title}</h3>
                         <h2><img src = {issue.image} width = "250" height = "250"></img></h2>
-                        <h4>{issue.description}</h4>
+                        <h4 className = "nDescriptions">{issue.description}</h4>
                         <h4>{issue.comments}</h4>
                         <Link key = {issue.id} to ={`/add-comment/${issue.issueid}`}><button>Comment</button></Link>
                         <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}><button>Update</button></Link>
