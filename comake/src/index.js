@@ -9,12 +9,17 @@ import {applyMiddleware, createStore} from 'redux'
 import thunk from 'redux-thunk'
 //import {rootReducer} from './store/reducers/rootReducer'
 import {issueReducer} from './store/reducers/issueReducer'
+import {rootReducer} from './store/reducers/rootReducer'
+import { Router } from 'react-router-dom';
 
 //const store = createStore(rootReducer, applyMiddleware(thunk))
 const store = createStore(issueReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
+  
+
   <Provider store = {store}>
+
     <App />
   </Provider>,
   document.getElementById('root')

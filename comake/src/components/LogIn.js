@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Input from './Input'
 import axios from 'axios'
 
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
+
+
 export default function Login() {
+
+    const history = useHistory()
 
     const [loginData, changeLoginData] = useState({
         username: '',
@@ -55,17 +60,18 @@ export default function Login() {
             .then((res) => {
                 console.log(res.data);
                 localStorage.setItem("token", res.data.access_token);
-                // props.history.push("/");
+                history.push("/dashboard");
             });
     };
 
     return (
-        <div>
-            <form onSubmit={login}>
-                <Input name="username" type="text" inputChange={inputChange} errors={errors} label="username or email"></Input>
-                <Input name="password" type="password" inputChange={inputChange} errors={errors} label="password"></Input>
-
+        <div class="form-outer">
+            <h2 class="">Log In</h2>
+            <form onSubmit={login} class="form">
+                <Input name="username" type="text" inputChange={inputChange} errors={errors} label="Username"></Input>
+                <Input name="password" type="password" inputChange={inputChange} errors={errors} label="Password"></Input>
                 <button>Submit</button>
+                <Link class="link" id="signup" to={'/signup'}>Don't have an account? Sign up!</Link>
             </form>
         </div>
     )
