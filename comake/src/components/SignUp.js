@@ -3,6 +3,7 @@ import * as Yup from 'yup'
 // import Form from './Form'
 import Input from './Input'
 // import UseIsMount, { useIsMount } from './UseIsMount'
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
 
 export default function SignUp() {
 
@@ -18,31 +19,31 @@ export default function SignUp() {
 
         name: 'username',
         label: 'Username',
-        type:'text'
+        type: 'text'
     },
 
     {
         name: 'email',
         label: 'Email',
-        type:'text'
+        type: 'text'
     },
 
     {
         name: 'phone',
         label: 'Phone',
-        type:'text'
+        type: 'text'
     },
 
     {
         name: 'password',
         label: 'Password',
-        type:'password'
+        type: 'password'
     },
 
     {
         name: 'confirmPassword',
         label: 'Confirm Password',
-        type:'password'
+        type: 'password'
     },
 
     ]
@@ -138,21 +139,23 @@ export default function SignUp() {
 
     return (
 
-        <div>
+        <div class="form-outer">
             <h2>Sign up</h2>
 
             {/* <Form data={data} schema = {schema} inputChange={inputChange} nameLabels={nameLabels}></Form> */}
 
             {
-                <form>
+                <form class="form">
                     {nameLabels.map((item) => {
                         return (<Input name={item.name} type={item.type} label={item.label} inputChange={inputChange} errors={errors}></Input>)
                     })}
                     <button disabled={disabled}>Submit</button>
+                    <Link class="link" id="login" to={'/login'}> Have an account? Login!</Link>
                 </form>
             }
 
-            
+
+
             {/* <form>
                 <Input name="username" type="text" label="Username" inputChange={inputChange} errors={errors}></Input>
 
