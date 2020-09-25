@@ -89,7 +89,7 @@ return(
         {             
             //--------------------------------------------------------------------            
             issues.map(issue => {
-                    
+                     
                 const deleteButton = e => {
                     e.preventDefault()
                     axiosWithAuth()
@@ -105,13 +105,13 @@ return(
                         //.finally(() => {history.push('/dashboard')})
                 }
 
-                // const updateUpvotes = () => {
-                //     axiosWithAuth()
+                 const updateUpvotes = () => {
+                    const addVote = issue.upvote + 1
+                     axiosWithAuth()                        
+                     .patch(`/issues/issue/${issue.issueid}/upvote`, {upvote: addVote})
+                     console.log ("Vote count", issue.upvote)                   
 
-                //     .patch(`/issues/issue/${issue.issueid}/upvote`, {upvote: upvoteCount})
-                //     console.log (issue.upvote)                   
-
-                //     }
+                     }
                     
                         // localStorage.setItem(`upvotes ${issue.issueid}`, "")
 
@@ -136,7 +136,7 @@ return(
                         <Link key = {issue.id} to = {`/update-issue/${issue.issueid}`}><button>Update</button></Link>
                         <button onClick = {deleteButton}>Delete</button>
                         <br></br>
-                        <button >Upvote</button>
+                        <button onClick = {updateUpvotes}>Upvote</button>
                         <h4>Upvotes: {issue.upvote}</h4>
                         
                         
