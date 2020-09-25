@@ -148,19 +148,19 @@ const [newIssue, setNewIssue] = useState(initialValues)
                 <br></br>
                 <label htmlFor="Category"> Post Type: </label>
                 <select value = {newIssue.category.categoryid} onChange = {handleDropdown}>
-                <option value={1}>Announcement</option>
-                <option value={2}>Community Activities</option>
-                <option value={3}>Crime & Safety</option>
-                <option value={4}>Flooding</option>
-                <option value={5}>General</option>
-                <option value={6}>Holiday</option>
-                <option value={7}>Lost & Found</option>
-                <option value={8}>Pets</option>
-                <option value={9}>Recommendation</option>
-                <option value={10}>Road Closure & Transportation</option>
-                <option value={11}>School & Education</option>
-                <option value={12}>Utilities</option>
-                <option value={13}>Yard and Lawn</option>
+                <option value={4}>Announcement</option>
+                <option value={5}>Community Activities</option>
+                <option value={6}>Crime & Safety</option>
+                <option value={7}>Flooding</option>
+                <option value={8}>General</option>
+                <option value={9}>Holiday</option>
+                <option value={10}>Lost & Found</option>
+                <option value={11}>Pets</option>
+                <option value={12}>Recommendation</option>
+                <option value={13}>Road Closure & Transportation</option>
+                <option value={14}>School & Education</option>
+                <option value={15}>Utilities</option>
+                <option value={16}>Yard and Lawn</option>
                 </select>                
                 <br></br>
                 <br></br>
