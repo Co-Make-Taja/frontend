@@ -109,10 +109,16 @@ return(
                     const addVote = issue.upvote + 1
                      axiosWithAuth()                        
                      .patch(`/issues/issue/${issue.issueid}/upvote`, {upvote: addVote})
-                     console.log ("Vote count", issue.upvote)                   
-
-                     }
-                    
+                    //the .then can be commented out along with the render below. The following portion displays the value of localstorage so that we do not have to reload the page
+                    //to increase the upvote count that is rendered.
+                     .then(res => {
+                    console.log ("Vote count", issue.upvote)
+                    console.log("Upvote response", res)                   
+                    localStorage.setItem(`localUpvoteCount${issue.issueid}`, res.data )
+                    //localStorage.setItem(`localUpvoteCount${issue.issueid}`, res.config.data ) //fix this later
+                     })
+                    }
+                    const getUpvoteFromStorage = localStorage.getItem(`localUpvoteCount${issue.issueid}`)
                         // localStorage.setItem(`upvotes ${issue.issueid}`, "")
 
                         // function increaseUpvote(){
@@ -138,6 +144,7 @@ return(
                         <br></br>
                         <button onClick = {updateUpvotes}>Upvote</button>
                         <h4>Upvotes: {issue.upvote}</h4>
+                        {/* <h4>local upvotes: {getUpvoteFromStorage}</h4> */}
                         
                         
                     </div>
