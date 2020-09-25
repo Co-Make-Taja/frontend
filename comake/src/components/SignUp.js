@@ -3,13 +3,17 @@ import * as Yup from 'yup'
 // import Form from './Form'
 import Input from './Input'
 // import UseIsMount, { useIsMount } from './UseIsMount'
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+import axios from 'axios';
+
+
 
 export default function SignUp() {
-
+    const history = useHistory()
     const data = {
         username: '',
-        email: '',
+        primaryemail: '',
         phone: '',
         password: '',
         confirmPassword: ''
@@ -23,7 +27,7 @@ export default function SignUp() {
     },
 
     {
-        name: 'email',
+        name: 'primaryemail',
         label: 'Email',
         type: 'text'
     },
@@ -57,7 +61,7 @@ export default function SignUp() {
 
     const schema = Yup.object().shape({
         username: Yup.string().required("Please enter a name."),
-        email: Yup.string().required("Please enter an email.").email("This email is not valid."),
+        primaryemail: Yup.string().required("Please enter an email.").email("This email is not valid."),
         phone: Yup.string().required().matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/, "The phone number is not valid."),
         'password': Yup.string().required().min(6),
         // passwordConfirmation: Yup.string()
@@ -137,6 +141,15 @@ export default function SignUp() {
         // schema.validate(value)
     }
 
+    const registrationSubmit = () => {
+        //axiosWithAuth()
+        axios
+        .post('https://bw-comakeapp-java.herokuapp.com/createnewuser', fieldData)
+        .then(console.log(fieldData))
+        history.push('/login')
+        //.catch(err => {console.log(err)})
+    }
+
     return (
 
         <div class="form-outer">
@@ -145,7 +158,7 @@ export default function SignUp() {
             {/* <Form data={data} schema = {schema} inputChange={inputChange} nameLabels={nameLabels}></Form> */}
 
             {
-                <form class="form">
+                <form class="form" onSubmit = {registrationSubmit}>
                     {nameLabels.map((item) => {
                         return (<Input name={item.name} type={item.type} label={item.label} inputChange={inputChange} errors={errors}></Input>)
                     })}
